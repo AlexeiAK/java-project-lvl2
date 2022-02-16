@@ -35,14 +35,14 @@ class App implements Callable {
 
 	@Override
 	public String call() throws Exception {
-		Path filepath1 = Paths.get("src/main/java/hexlet/code/file1.json").toAbsolutePath().normalize();
-		Path filepath2 = Paths.get("src/main/java/hexlet/code/file2.json").toAbsolutePath().normalize();
+		final File file1 = new File("src/main/resources/file1.json");
+		final File file2 = new File("src/main/resources/file2.json");
 
-		/*try {
-			System.out.println(Differ.generate(filepath1.toString(), filepath2.toString()));
+		try {
+			System.out.println(Differ.generate(file1, file2));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}*/
+		}
 
 		return null;
 	}
