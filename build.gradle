@@ -5,9 +5,6 @@
  * Learn more about Gradle by exploring our samples at https://docs.gradle.org/7.1.1/samples
  */
 
-group = 'hexlet.code'
-version = '1.0-SNAPSHOT'
-
 plugins {
     id 'com.github.ben-manes.versions' version '0.39.0'
     id 'java-library'
@@ -15,6 +12,9 @@ plugins {
     id 'application'
     id 'checkstyle'
 }
+
+group = 'hexlet.code'
+version = '1.0-SNAPSHOT'
 
 application {
     mainClass = 'hexlet.code.App'
