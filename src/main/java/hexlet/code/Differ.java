@@ -2,20 +2,12 @@ package hexlet.code;
 
 import java.io.File;
 import java.io.FileReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 
-import antlr.Utils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 public class Differ {
     static String generate(File file1, File file2) throws Exception {
@@ -24,8 +16,8 @@ public class Differ {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        Map<String, Object> map1 = mapper.readValue(new FileReader(file1PathString), new TypeReference<>(){});
-        Map<String, Object> map2 = mapper.readValue(new FileReader(file2PathString), new TypeReference<>(){});
+        Map<String, Object> map1 = mapper.readValue(new FileReader(file1PathString), new TypeReference<>() { });
+        Map<String, Object> map2 = mapper.readValue(new FileReader(file2PathString), new TypeReference<>() { });
 
         Map<String, Object> diffMap = new TreeMap<>();
         diffMap.putAll(map1);
