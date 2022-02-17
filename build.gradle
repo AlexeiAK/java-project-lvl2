@@ -10,7 +10,10 @@ plugins {
     id 'java-library'
     id 'java'
     id 'application'
+
     id 'checkstyle'
+    id 'jacoco'
+    id 'com.adarshr.test-logger' version '3.1.0'
 }
 
 group = 'hexlet.code'
@@ -31,6 +34,7 @@ repositories {
 dependencies {
     implementation 'org.hibernate:hibernate-core:5.6.5.Final'
     api 'com.google.guava:guava:31.0.1-jre'
+
     implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     testImplementation 'junit:junit:4.13.2'
 
@@ -47,4 +51,17 @@ sourceSets {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('~/jacocoHtml')
+    }
+}
+
+testlogger {
+    showStandardStreams true
 }
