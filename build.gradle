@@ -42,6 +42,8 @@ dependencies {
     annotationProcessor 'info.picocli:picocli-codegen:4.6.2'
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
+    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.8'
 }
 
 sourceSets {
@@ -55,10 +57,9 @@ test {
 }
 
 jacocoTestReport {
+    dependsOn test
     reports {
-        xml.required = true
-        csv.required = false
-        html.outputLocation = layout.buildDirectory.dir('~/jacocoHtml')
+        xml.enabled true
     }
 }
 
