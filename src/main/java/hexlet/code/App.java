@@ -5,9 +5,9 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff",
@@ -31,12 +31,15 @@ class App implements Callable {
 
     @Override
     public String call() throws Exception {
-        final File file1 = new File("src/main/resources/file1.json");
-        final File file2 = new File("src/main/resources/file2.json");
+        final String file1 = String.valueOf(Paths.get(filepath1).toAbsolutePath());
+        final String file2 = String.valueOf(Paths.get(filepath2).toAbsolutePath());
+
+        Map<String, Object> parsedfile1 = Parser.generate(file1);
+        Map<String, Object> parsedfile2 = Parser.generate(file2);
 
         try {
-            System.out.println(Differ.generate(file1, file2));
-        } catch (FileNotFoundException e) {
+            System.out.println(Differ.generate(parsedfile1, parsedfile2));
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -47,5 +50,4 @@ class App implements Callable {
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
     }
-
 }
