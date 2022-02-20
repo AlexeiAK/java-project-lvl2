@@ -17,10 +17,14 @@ import java.util.concurrent.Callable;
 
 class App implements Callable {
     @Parameters
-        (index = "0", paramLabel = "filepath1", description = "path to first file")
+        (index = "0",
+            paramLabel = "filepath1",
+            description = "path to first file")
     private String filepath1;
     @Parameters
-        (index = "1", paramLabel = "filepath2", description = "path to second file")
+        (index = "1",
+            paramLabel = "filepath2",
+            description = "path to second file")
     private String filepath2;
 
     @Option(names = { "-f", "--format" },
@@ -38,7 +42,7 @@ class App implements Callable {
         Map<String, Object> parsedfile2 = Parser.generate(file2);
 
         try {
-            System.out.println(Differ.generate(parsedfile1, parsedfile2));
+            System.out.println(Differ.generate(parsedfile1, parsedfile2, format));
         } catch (Exception e) {
             e.printStackTrace();
         }
