@@ -43,6 +43,8 @@ class AppTest {
         Map<String, Object> parsedfile1 = Parser.generate(FILE_1);
         Map<String, Object> parsedfile2 = Parser.generate(FILE_2);
 
+        String format = "stylish";
+
         Assertions.assertEquals(DIFF_TEST_STRING, Differ.generate(parsedfile1, parsedfile2, format));
     }
 
@@ -50,6 +52,8 @@ class AppTest {
     void whenYamlThenDiff() throws Exception {
         Map<String, Object> parsedfile1 = Parser.generate(YML_FILE_1);
         Map<String, Object> parsedfile2 = Parser.generate(YML_FILE_2);
+
+        String format = "stylish";
 
         Assertions.assertEquals(DIFF_TEST_STRING, Differ.generate(parsedfile1, parsedfile2, format));
     }

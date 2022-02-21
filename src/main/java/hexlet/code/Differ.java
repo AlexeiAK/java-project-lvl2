@@ -1,41 +1,36 @@
 package hexlet.code;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class Differ {
     static String generate(Map<String, Object> map1, Map<String, Object> map2, String format) {
-        Map<String, Object> diffMap = new TreeMap<>();
-        diffMap.putAll(map1);
-        diffMap.putAll(map2);
+        Map<String, Object> allMaps = new TreeMap<>();
+        allMaps.putAll(map1);
+        allMaps.putAll(map2);
 
-        String diff = "{\n";
+        Formatter formatter = new Formatter();
+        List<Pair> resultListOfPairs = new ArrayList<>();
 
-        for (Map.Entry pair : diffMap.entrySet()) {
+        for (Map.Entry<String, Object>  pair : allMaps.entrySet()) {
             String key = (String) pair.getKey();
 
             Object valueMap1 = (map1.get(key) == null) ? "null" : map1.get(key);
             Object valueMap2 = (map2.get(key) == null) ? "null" : map2.get(key);
 
             if (!map2.containsKey(key)) {
-                diff += "  - " + key + ": " + valueMap1 + "\n";
+                resultListOfPairs.add(new Pair("removed", key, valueMap1, valueMap2));
             } else if (!map1.containsKey(key))  {
-                diff += "  + " + key + ": " + valueMap2 + "\n";
+                resultListOfPairs.add(new Pair("added", key, valueMap1, valueMap2));
             } else if (valueMap1.equals(valueMap2)) {
-                diff += "    " + key + ": " + valueMap1 + "\n";
+                resultListOfPairs.add(new Pair("nothing", key, valueMap1, valueMap2));
             } else if (!valueMap1.equals(valueMap2)) {
-                diff += "  - " + key + ": " + valueMap1 + "\n";
-                diff += "  + " + key + ": " + valueMap2 + "\n";
+                resultListOfPairs.add(new Pair("updated", key, valueMap1, valueMap2));
             }
         }
 
-        return diff  + "}";
+        return formatter.getDiff(resultListOfPairs, format);
     }
 }
-
-/*
-* (-  removed) если значение в 1 есть, в 2 нет
-* (   nothing) если значение в 1 есть, в 2 равно
-* (-+ updated) если значение в 1 есть, в 2 неравно
-* (+  added)   если значение в 1 нет, в 2 есть
- */

@@ -30,7 +30,7 @@ class App implements Callable {
     @Option(names = { "-f", "--format" },
         paramLabel = "format",
         description = "output format [default: stylish]")
-    private String format;
+    private String format = "stylish";
 
 
     @Override
