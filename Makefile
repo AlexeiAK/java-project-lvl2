@@ -10,9 +10,11 @@ run-dist:
 run-diff-json:
 	./build/install/app/bin/app file1.json file2.json
 	./build/install/app/bin/app -f plain file1.json file2.json
+	./build/install/app/bin/app -f json file1.json file2.json
 run-diff-yml:
 	./build/install/app/bin/app file1.yml file2.yml
 	./build/install/app/bin/app -f plain file1.yml file2.yml
+	./build/install/app/bin/app -f json file1.yml file2.yml
 
 # Check updates for dependencies (libraries; plugins from build.gradle)
 check-updates:

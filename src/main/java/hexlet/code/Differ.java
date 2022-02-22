@@ -1,12 +1,15 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class Differ {
-    static String generate(Map<String, Object> map1, Map<String, Object> map2, String format) {
+    static String generate(Map<String, Object> map1, Map<String, Object> map2, String format)
+        throws JsonProcessingException {
         Map<String, Object> allMaps = new TreeMap<>();
         allMaps.putAll(map1);
         allMaps.putAll(map2);
