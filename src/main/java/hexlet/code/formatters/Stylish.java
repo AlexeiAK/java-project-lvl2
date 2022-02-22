@@ -7,7 +7,7 @@ import java.util.List;
 public class Stylish {
 
     public static String getFormatResult(List<Pair> resultListOfPairs) {
-        String diff = "{\n";
+        StringBuilder diff = new StringBuilder().append("{\n");
 
         for (Pair pair : resultListOfPairs) {
             String key = pair.getKey();
@@ -16,20 +16,42 @@ public class Stylish {
             String changesType = pair.getChangesType();
 
             if (changesType.equals("removed")) {
-                diff += "  - " + key + ": " + value1 + "\n";
+                diff.append("  - ")
+                    .append(key)
+                    .append(": ")
+                    .append(value1)
+                    .append("\n");
             }
             if (changesType.equals("added")) {
-                diff += "  + " + key + ": " + value2 + "\n";
+                diff.append("  + ")
+                    .append(key)
+                    .append(": ")
+                    .append(value2)
+                    .append("\n");
             }
             if (changesType.equals("nothing")) {
-                diff += "    " + key + ": " + value1 + "\n";
+                diff.append("    ")
+                    .append(key)
+                    .append(": ")
+                    .append(value1)
+                    .append("\n");
             }
             if (changesType.equals("updated")) {
-                diff += "  - " + key + ": " + value1 + "\n";
-                diff += "  + " + key + ": " + value2 + "\n";
+                diff.append("  - ")
+                    .append(key)
+                    .append(": ")
+                    .append(value1)
+                    .append("\n")
+
+                    .append("  + ")
+                    .append(key)
+                    .append(": ")
+                    .append(value2)
+                    .append("\n");
             }
         }
 
-        return diff + "}";
+        diff.append("}");
+        return diff.toString();
     }
 }
