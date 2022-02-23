@@ -11,9 +11,9 @@ public class Plain {
         StringBuilder diff = new StringBuilder();
 
         for (UnitOfDiff pair : resultListOfPairs) {
-            String key = pair.getUnitKey();
-            Object value1 = getRepresentStyleOfValue(pair.getUnitValue1());
-            Object value2 = getRepresentStyleOfValue(pair.getUnitValue2());
+            String key = pair.getKey();
+            Object value1 = getRepresentStyleOfValue(pair.getValue1());
+            Object value2 = getRepresentStyleOfValue(pair.getValue2());
             String changesType = pair.getChangesType();
 
             if (changesType.equals("removed")) {

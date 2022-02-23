@@ -10,9 +10,9 @@ public class Stylish {
         StringBuilder diff = new StringBuilder().append("{\n");
 
         for (UnitOfDiff pair : resultListOfPairs) {
-            String key = pair.getUnitKey();
-            Object value1 = pair.getUnitValue1();
-            Object value2 = pair.getUnitValue2();
+            String key = pair.getKey();
+            Object value1 = pair.getValue1();
+            Object value2 = pair.getValue2();
             String changesType = pair.getChangesType();
 
             if (changesType.equals("removed")) {

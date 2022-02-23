@@ -7,11 +7,16 @@ import com.google.common.io.Files;
 
 import java.io.FileReader;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 
 public class Parser {
-    public static Map<String, Object> generate(String file) throws Exception {
-        String fileFormat = Files.getFileExtension(file);
+    public static Map<String, Object> generate(String filepath1) throws Exception {
+        final Path fileAbsolutePath = Paths.get(filepath1).toAbsolutePath();
+        final String file = String.valueOf(fileAbsolutePath);
+
+        final String fileFormat = Files.getFileExtension(filepath1);
 
         Map<String, Object> map = null;
 
