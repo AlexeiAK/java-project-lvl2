@@ -21,7 +21,7 @@ class AppTest {
         String format = "stylish";
 
         String actual = Differ.generate(parsedfile1, parsedfile2, format);
-        String expected = Files.readString(Paths.get("src/test/resources/expected/stylish"));
+        String expected = Files.readString(Paths.get("src/test/resources/fixtures/stylish"));
 
         Assertions.assertEquals(expected, actual);
     }
@@ -33,7 +33,7 @@ class AppTest {
         String format = "plain";
 
         String actual = Differ.generate(parsedfile1, parsedfile2, format);
-        String expected = Files.readString(Paths.get("src/test/resources/expected/plain"));
+        String expected = Files.readString(Paths.get("src/test/resources/fixtures/plain"));
 
         Assertions.assertEquals(expected, actual);
     }
@@ -45,7 +45,7 @@ class AppTest {
         String format = "stylish";
 
         String actual = Differ.generate(parsedfile1, parsedfile2, format);
-        String expected = Files.readString(Paths.get("src/test/resources/expected/stylish"));
+        String expected = Files.readString(Paths.get("src/test/resources/fixtures/stylish"));
 
         Assertions.assertEquals(expected, actual);
     }
@@ -57,7 +57,7 @@ class AppTest {
         String format = "plain";
 
         String actual = Differ.generate(parsedfile1, parsedfile2, format);
-        String expected = Files.readString(Paths.get("src/test/resources/expected/plain"));
+        String expected = Files.readString(Paths.get("src/test/resources/fixtures/plain"));
 
         Assertions.assertEquals(expected, actual);
     }

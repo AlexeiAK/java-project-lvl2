@@ -1,19 +1,19 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Pair;
+import hexlet.code.UnitOfDiff;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 public class Plain {
-    public static String getFormatResult(List<Pair> resultListOfPairs) {
+    public static String getFormated(List<UnitOfDiff> resultListOfPairs) {
         StringBuilder diff = new StringBuilder();
 
-        for (Pair pair : resultListOfPairs) {
-            String key = pair.getKey();
-            Object value1 = getRepresentStyleOfValue(pair.getValue1());
-            Object value2 = getRepresentStyleOfValue(pair.getValue2());
+        for (UnitOfDiff pair : resultListOfPairs) {
+            String key = pair.getUnitKey();
+            Object value1 = getRepresentStyleOfValue(pair.getUnitValue1());
+            Object value2 = getRepresentStyleOfValue(pair.getUnitValue2());
             String changesType = pair.getChangesType();
 
             if (changesType.equals("removed")) {

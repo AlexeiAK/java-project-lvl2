@@ -8,12 +8,12 @@ import hexlet.code.formatters.Stylish;
 import java.util.List;
 
 public class Formatter {
-    public final String getDiff(List<Pair> resultListOfPairs, String format) throws JsonProcessingException {
+    public final String getDiff(List<UnitOfDiff> allDifferences, String format) throws JsonProcessingException {
         return switch (format) {
-            case ("stylish") -> Stylish.getFormatResult(resultListOfPairs);
-            case ("plain") -> Plain.getFormatResult(resultListOfPairs);
-            case ("json") -> Json.getFormatResult(resultListOfPairs);
-            default -> "Unexpected value: " + format;
+            case ("stylish") -> Stylish.getFormated(allDifferences);
+            case ("plain") -> Plain.getFormated(allDifferences);
+            case ("json") -> Json.getFormated(allDifferences);
+            default -> "Unexpected format: " + format;
         };
     }
 }

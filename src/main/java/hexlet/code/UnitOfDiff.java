@@ -1,21 +1,21 @@
 package hexlet.code;
 
-public class Pair {
-    private final String changesStyle;
+public class UnitOfDiff {
+    private final String style;
     private final String key;
     private final Object value1;
     private final Object value2;
 
-    public Pair(String style, String pairKey, Object pairValue1, Object pairValue2) {
-        this.changesStyle = style;
-        this.key = pairKey;
-        this.value1 = pairValue1;
-        this.value2 = pairValue2;
+    public UnitOfDiff(String changesStyle, String unitKey, Object unitValue1, Object unitValue2) {
+        this.style = changesStyle;
+        this.key = unitKey;
+        this.value1 = unitValue1;
+        this.value2 = unitValue2;
     }
 
 
     public final String getChangesType() {
-        return changesStyle;
+        return style;
     }
 
     public final String getKey() {

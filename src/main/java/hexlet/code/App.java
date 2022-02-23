@@ -5,6 +5,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import java.util.Map;
@@ -35,14 +36,17 @@ class App implements Callable {
 
     @Override
     public String call() throws Exception {
-        final String file1 = String.valueOf(Paths.get(filepath1).toAbsolutePath());
-        final String file2 = String.valueOf(Paths.get(filepath2).toAbsolutePath());
+        final Path file1AbsolutePath = Paths.get(filepath1).toAbsolutePath();
+        final Path file2AbsolutePath = Paths.get(filepath2).toAbsolutePath();
 
-        Map<String, Object> parsedfile1 = Parser.generate(file1);
-        Map<String, Object> parsedfile2 = Parser.generate(file2);
+        final String file1 = String.valueOf(file1AbsolutePath);
+        final String file2 = String.valueOf(file2AbsolutePath);
+
+        Map<String, Object> parsedFile1 = Parser.generate(file1);
+        Map<String, Object> parsedFile2 = Parser.generate(file2);
 
         try {
-            System.out.println(Differ.generate(parsedfile1, parsedfile2, format));
+            System.out.println(Differ.generate(parsedFile1, parsedFile2, format));
         } catch (Exception e) {
             e.printStackTrace();
         }
