@@ -5,60 +5,48 @@ import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Map;
 
 class AppTest {
-    private static final String FILE_1 = "src/test/resources/file1.json";
-    private static final String FILE_2 = "src/test/resources/file2.json";
+    private static final String JSON_FILE_1 = "src/test/resources/file1.json";
+    private static final String JSON_FILE_2 = "src/test/resources/file2.json";
 
     private static final String YML_FILE_1 = "src/test/resources/file1.yml";
     private static final String YML_FILE_2 = "src/test/resources/file2.yml";
 
-    @Test
-    void whenJsonsThenStylish() throws Exception {
-        Map<String, Object> parsedfile1 = Parser.generate(FILE_1);
-        Map<String, Object> parsedfile2 = Parser.generate(FILE_2);
-        String format = "stylish";
+    private final String plainFormat = "plain";
+    private final String stylishFormat = "stylish";
+    private final String jsonFormat = "json";
 
-        String actual = Differ.generate(parsedfile1, parsedfile2, format);
+    @Test
+    void whenFilesThenStylish() throws Exception {
+        String actualJsons = Differ.generate(JSON_FILE_1, JSON_FILE_2, stylishFormat);
+        String actualYmls = Differ.generate(YML_FILE_1, YML_FILE_2, stylishFormat);
+
         String expected = Files.readString(Paths.get("src/test/resources/fixtures/stylish"));
 
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actualJsons);
+        Assertions.assertEquals(expected, actualYmls);
     }
 
     @Test
-    void whenJsonsThenPlain() throws Exception {
-        Map<String, Object> parsedfile1 = Parser.generate(FILE_1);
-        Map<String, Object> parsedfile2 = Parser.generate(FILE_2);
-        String format = "plain";
+    void whenFilesThenPlain() throws Exception {
+        String actualJsons = Differ.generate(JSON_FILE_1, JSON_FILE_2, plainFormat);
+        String actualYmls = Differ.generate(YML_FILE_1, YML_FILE_2, plainFormat);
 
-        String actual = Differ.generate(parsedfile1, parsedfile2, format);
         String expected = Files.readString(Paths.get("src/test/resources/fixtures/plain"));
 
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actualJsons);
+        Assertions.assertEquals(expected, actualYmls);
     }
 
     @Test
-    void whenYamlsThenStylish() throws Exception {
-        Map<String, Object> parsedfile1 = Parser.generate(YML_FILE_1);
-        Map<String, Object> parsedfile2 = Parser.generate(YML_FILE_2);
-        String format = "stylish";
+    void whenFilesThenJsons() throws Exception {
+        String actualJsons = Differ.generate(JSON_FILE_1, JSON_FILE_2, jsonFormat);
+        String actualYmls = Differ.generate(YML_FILE_1, YML_FILE_2, jsonFormat);
 
-        String actual = Differ.generate(parsedfile1, parsedfile2, format);
-        String expected = Files.readString(Paths.get("src/test/resources/fixtures/stylish"));
+        String expected = Files.readString(Paths.get("src/test/resources/fixtures/json"));
 
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    void whenYamlsThenPlain() throws Exception {
-        Map<String, Object> parsedfile1 = Parser.generate(YML_FILE_1);
-        Map<String, Object> parsedfile2 = Parser.generate(YML_FILE_2);
-        String format = "plain";
-
-        String actual = Differ.generate(parsedfile1, parsedfile2, format);
-        String expected = Files.readString(Paths.get("src/test/resources/fixtures/plain"));
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actualJsons);
+        Assertions.assertEquals(expected, actualYmls);
     }
 }
