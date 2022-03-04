@@ -1,15 +1,15 @@
 package hexlet.code.formatters;
 
-import hexlet.code.UnitOfDiff;
+import hexlet.code.Node;
 
 import java.util.List;
 
 public class Stylish {
 
-    public static String getFormated(List<UnitOfDiff> resultListOfPairs) {
+    public static String getFormated(List<Node> resultListOfPairs) {
         StringBuilder diff = new StringBuilder().append("{\n");
 
-        for (UnitOfDiff pair : resultListOfPairs) {
+        for (Node pair : resultListOfPairs) {
             String key = pair.getKey();
             Object value1 = pair.getValue1();
             Object value2 = pair.getValue2();

@@ -1,16 +1,16 @@
 package hexlet.code.formatters;
 
-import hexlet.code.UnitOfDiff;
+import hexlet.code.Node;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 public class Plain {
-    public static String getFormated(List<UnitOfDiff> resultListOfPairs) {
+    public static String getFormated(List<Node> resultListOfPairs) {
         StringBuilder diff = new StringBuilder();
 
-        for (UnitOfDiff pair : resultListOfPairs) {
+        for (Node pair : resultListOfPairs) {
             String key = pair.getKey();
             Object value1 = getRepresentStyleOfValue(pair.getValue1());
             Object value2 = getRepresentStyleOfValue(pair.getValue2());
@@ -48,7 +48,7 @@ public class Plain {
     }
 
     private static Object getRepresentStyleOfValue(Object value) {
-        if (value.equals("null")) {
+        if (value == null) {
             return value;
         }
         if (value instanceof String) {

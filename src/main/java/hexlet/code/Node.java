@@ -1,12 +1,12 @@
 package hexlet.code;
 
-public class UnitOfDiff {
+public class Node {
     private final String style;
     private final String key;
     private final Object value1;
     private final Object value2;
 
-    public UnitOfDiff(String changesStyle, String unitKey, Object unitValue1, Object unitValue2) {
+    public Node(String changesStyle, String unitKey, Object unitValue1, Object unitValue2) {
         this.style = changesStyle;
         this.key = unitKey;
         this.value1 = unitValue1;
