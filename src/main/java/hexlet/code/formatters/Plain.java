@@ -5,6 +5,7 @@ import hexlet.code.Node;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Plain {
     public static String getFormated(List<Node> resultListOfPairs) {
@@ -48,9 +49,6 @@ public class Plain {
     }
 
     private static Object getRepresentStyleOfValue(Object value) {
-        if (value == null) {
-            return value;
-        }
         if (value instanceof String) {
             return "'" + value + "'";
         }
@@ -58,6 +56,6 @@ public class Plain {
             return "[complex value]";
         }
 
-        return value;
+        return Objects.toString(value);
     }
 }
