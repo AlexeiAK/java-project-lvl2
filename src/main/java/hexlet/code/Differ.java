@@ -9,8 +9,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.Objects;
 
-import static com.google.common.io.Files.getFileExtension;
-
 public class Differ {
     public static String generate(String filepath1, String filepath2, String format)
         throws Exception {
@@ -24,6 +22,11 @@ public class Differ {
         return formatter.getDiff(diff, format);
     }
 
+
+    private static String getFileExtension(String filepath) {
+        int lastDotIndex = filepath.lastIndexOf('.');
+        return filepath.substring(lastDotIndex + 1);
+    }
 
     private static String getContent(String filepath) {
         final Path fileAbsolutePath = Paths.get(filepath).toAbsolutePath();
