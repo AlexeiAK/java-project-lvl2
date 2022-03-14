@@ -41,8 +41,8 @@ public class Differ {
         List<Node> allDifferences = new ArrayList<>();
 
         for (String key: allKeys) {
-            Object valueMap1 = (map1.get(key) == null) ? null : map1.get(key);
-            Object valueMap2 = (map2.get(key) == null) ? null : map2.get(key);
+            Object valueMap1 = map1.get(key);
+            Object valueMap2 = map2.get(key);
 
             if (!map2.containsKey(key)) {
                 allDifferences.add(new Node("removed", key, valueMap1, valueMap2));

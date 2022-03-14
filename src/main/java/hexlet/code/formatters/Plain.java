@@ -13,8 +13,8 @@ public class Plain {
 
         for (Node pair : resultListOfPairs) {
             String key = pair.getKey();
-            Object value1 = getRepresentStyleOfValue(pair.getValue1());
-            Object value2 = getRepresentStyleOfValue(pair.getValue2());
+            Object value1 = stringify(pair.getValue1());
+            Object value2 = stringify(pair.getValue2());
             String changesType = pair.getChangesType();
 
             if (changesType.equals("removed")) {
@@ -48,7 +48,7 @@ public class Plain {
         return diff.toString();
     }
 
-    private static Object getRepresentStyleOfValue(Object value) {
+    private static Object stringify(Object value) {
         if (value instanceof String) {
             return "'" + value + "'";
         }

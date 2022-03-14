@@ -8,25 +8,12 @@ import java.util.Map;
 
 public class Parser {
     public static Map<String, Object> generate(String content, String contentType) throws Exception {
+        ObjectMapper mapper = switch (contentType) {
+            case "yml", "yaml" -> new ObjectMapper(new YAMLFactory());
+            case "json" -> new ObjectMapper();
+            default -> throw new Exception("Unexpected format: " + contentType);
+        };
 
-        Map<String, Object> map;
-
-        switch (contentType) {
-            case "yml" -> {
-                ObjectMapper ymlMapper = new ObjectMapper(new YAMLFactory());
-                map = ymlMapper.readValue(new FileReader(content), new TypeReference<>() {
-                });
-            }
-            case "json" -> {
-                ObjectMapper jsonMapper = new ObjectMapper();
-                map = jsonMapper.readValue(new FileReader(content), new TypeReference<>() {
-                });
-            }
-            default -> {
-                throw new Exception("Unexpected format: " + contentType);
-            }
-        }
-
-        return map;
+        return mapper.readValue(new FileReader(content), new TypeReference<>() { });
     }
 }
